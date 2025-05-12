@@ -1,11 +1,11 @@
 # black-scholes-model
 Attempting to build a Black-Scholes option pricer.
 ## needed context
-* call options: financial contracts that give the buyer the right (but not obligation) to buy an asset at a specified price in a specific period
-  * contract between a buyer/seller
-  * buyer has a right to buy the underlying asset at the strike price
-  * there is an expiration date on/before which the option must be exercised
-  * the buyer pays a premium to the seller for this right
+* Call options: give the right (but not obligation) to buy an asset 
+* Put options: give the right to sell the asset
+* European options (represented by lowercase c for call and lowercase p for put): can only be exercised at the expiration date
+* American options (represented by uppercase C for call and uppercase P for put): can be exercised at any time before/on the expiration date
+* The values of call/put options differ depending on whether they're American or European -- American options provide more freedom, and are therefore at least equal to (often higher than) the value of their European counterpart 
 ## notes on model and implementation
 * People had been trading stock options for a while, but no mathematical way to value an option
 * No analytical framework, but general feeling of values
