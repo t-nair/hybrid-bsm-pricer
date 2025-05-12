@@ -1,23 +1,41 @@
 # black-scholes-model
 Attempting to build a Black-Scholes option pricer.
-## needed context
-* Call options: give the right (but not obligation) to buy an asset 
+## notes
+### basic info
+* Stock: (a.k.a. equity) security that represents the ownership of a fraction of the issuing corporation
+ * Units of stock are called shares: they entitle the owner to a portion of the corporation's profits equal to the number of shares owned
+ * Bough and sold predominantly on public exchanges
+* Shareholder: person/company/institution that owns at least one share of a company's stock
+* Options: contract that gives an investor a right to buy/sell a stock/ETF at an agreed-upon strike price for a specific period of time
+ * Financial derivatives: derive their value from the underlying security/stock
+ * Have a cost associated with them (premium) and an expiration date
+* Call options: give the right (but not obligation) to buy an asset
+ * Profitable when the strike price is below the stock's market price, since the trader can buy the stock at a lower price
 * Put options: give the right to sell the asset
+ * Profitable when the strike price is higher than the stock's 
 * European options (represented by lowercase c for call and lowercase p for put): can only be exercised at the expiration date
 * American options (represented by uppercase C for call and uppercase P for put): can be exercised at any time before/on the expiration date
 * The values of call/put options differ depending on whether they're American or European -- American options provide more freedom, and are therefore at least equal to (often higher than) the value of their European counterpart 
-## notes on model and implementation
+### black-scholes model and implementation
 * People had been trading stock options for a while, but no mathematical way to value an option
 * No analytical framework, but general feeling of values
+#### assumptions
+* Assumes option prices exhibit Brownian motion
+* Assumes risk-free rates are constant, when in reality, they're dynamic and fluctuate with supply and demand
+* Assumes stock returns resemble a log-normal distribution
+* Assumes we have a frictionless market and there are no transaction costs (not the case in the real world)
+* Neglects dividend payouts throughout the option period
+#### formula
+* Equation is a parabolic PDE
+* Describes price V(S, t) of an option, where S is price of underlying asset and t is time
+![image](https://github.com/user-attachments/assets/e078b874-112b-4390-8f6b-a038d4a5cca7)
+* Key financial insight: one can perfectly hedge the option by buying/selling underlying asset and bank account asset to "eliminate risk", implying there's a unique price for the option given by the Black-Scholes formula
+* Where K is the strike price of the option, S is the price of the underlying asset at time t, σ is the standard deviation of the stock's returns (volatility), T is the time of option expiration, t is a time in years (with t = 0 generally representing the present year), r is the annualized risk-free interest rate (continuously compounded, a.k.a. force of interest), and N is the standard normal cumulative distribution function:
+![image](https://github.com/user-attachments/assets/be7ed181-1365-4dbc-8baa-b1990a638c99)
+* For a European call option C(S, t):
+![image](https://github.com/user-attachments/assets/096b0ff5-d827-447a-9a1f-41fbe77bf75e)
+* For a European put option P(S, t):
+![image](https://github.com/user-attachments/assets/04e00ea3-2da0-4ae6-b187-0af7a559310a)
 
-* s_0 = stock price
-* x = exercise price
-* r = risk-free interest rate
-* T = time to expiration
-* σ = standard deviation of log returns (volatility)
-  *   Here, S2 is more volatile (will have a higher σ) than S1 - looking at how dispersed the returns are away from their mean
-      ![image](https://github.com/user-attachments/assets/28580b97-d5e1-4593-ac74-3cc43550bbb2)
-  * Would drive the value of an option up
 
-* For a European call option:
-  ![image](https://github.com/user-attachments/assets/7bd24f7a-8340-4644-8b4d-6eb1d42f3d54)
+
