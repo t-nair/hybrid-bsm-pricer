@@ -36,6 +36,15 @@ Attempting to build a Black-Scholes option pricer.
 ![image](https://github.com/user-attachments/assets/096b0ff5-d827-447a-9a1f-41fbe77bf75e)
 * For a European put option P(S, t):
 ![image](https://github.com/user-attachments/assets/04e00ea3-2da0-4ae6-b187-0af7a559310a)
+#### in practice
+* Not all assumptions of the model are empirically valid
+* Useful approximation IF you understand the risks
+* Most significant limitations include:
+  * Underestimation of extreme moves, which yields tail risk (can be hedged with out-of-the-money options)
+  * Assumption of instant, cost-less trading, which yields liquidity risk (difficult to hedge)
+  * Assumption of a stationary process, which yields volatility risk (can be hedged with volatility hedging)
+  * Assumption of continuous time/trading, which yields gap risk (can be hedged with Gamma hedging)
+  * Model tends to underprice deep out-of-the-money options and overprice deep in-the-money options 
 
 
 
