@@ -1,7 +1,21 @@
-# black-scholes-model
-Attempting to build a Black-Scholes option pricer.
-## notes
-### basic info
+# hybrid-bsm-pricer
+Attempting to build an augmented Black-Scholes option pricer that:
+ 1. Learns and corrects for residual pricing errors using real market data.
+ 2. Replaces the constant volatility term with a fused, dynamic volatility estimate: using both GARCH and a RNN.
+ 3. Identifies and compensates for sudden discontinuities in price dynamics with a jump detection module.
+## formula
+math.ipynb
+## components
+* BSM engine implemented in Python: modular to swap volatility term
+* Fused volatility estimator
+ * Inputs: past returns, volatility index, technical indicators, macro signals
+ * Outputs: volatility from GARCH, volatility from RNN
+* Fusion layer combines outputs into one volatility metric - linear regressor with weights for GARCH vs. RNN outputs based on recent market conditions
+* Residual correction module using MLP to predict error
+* Jump detection module
+ * When jump detected: adds a small correction term to the price
+# notes
+## basic info
 * Stock: (a.k.a. equity) security that represents the ownership of a fraction of the issuing corporation
  * Units of stock are called shares: they entitle the owner to a portion of the corporation's profits equal to the number of shares owned
  * Bough and sold predominantly on public exchanges
@@ -19,13 +33,13 @@ Attempting to build a Black-Scholes option pricer.
 ### black-scholes model and implementation
 * People had been trading stock options for a while, but no mathematical way to value an option
 * No analytical framework, but general feeling of values
-#### assumptions
+### assumptions
 * Assumes option prices exhibit Brownian motion
 * Assumes risk-free rates are constant, when in reality, they're dynamic and fluctuate with supply and demand
 * Assumes stock returns resemble a log-normal distribution
 * Assumes we have a frictionless market and there are no transaction costs (not the case in the real world)
 * Neglects dividend payouts throughout the option period
-#### formula
+### formula
 * Equation is a parabolic PDE
 * Describes price V(S, t) of an option, where S is price of underlying asset and t is time
 ![image](https://github.com/user-attachments/assets/e078b874-112b-4390-8f6b-a038d4a5cca7)
@@ -36,7 +50,7 @@ Attempting to build a Black-Scholes option pricer.
 ![image](https://github.com/user-attachments/assets/096b0ff5-d827-447a-9a1f-41fbe77bf75e)
 * For a European put option P(S, t):
 ![image](https://github.com/user-attachments/assets/04e00ea3-2da0-4ae6-b187-0af7a559310a)
-#### in practice
+### in practice
 * Not all assumptions of the model are empirically valid
 * Useful approximation IF you understand the risks
 * Most significant limitations include:
