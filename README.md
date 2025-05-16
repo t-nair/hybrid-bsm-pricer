@@ -4,7 +4,7 @@ Attempting to build an augmented Black-Scholes option pricer that:
  2. Replaces the constant volatility term with a fused, dynamic volatility estimate: using both GARCH and a RNN.
  3. Identifies and compensates for sudden discontinuities in price dynamics with a jump detection module.
 ## formula
-math.ipynb
+[hybrid-bsm-math.ipynb](https://github.com/t-nair/hybrid-bsm-pricer/blob/main/hybrid_bsm_math.ipynb)
 ## components
 * BSM engine implemented in Python: modular to swap volatility term
 * Fused volatility estimator
