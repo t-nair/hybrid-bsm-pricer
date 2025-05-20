@@ -9,7 +9,7 @@ Attempting to build an augmented Black-Scholes option pricer that:
 * BSM engine implemented in Python: modular to swap volatility term
 * Fused volatility estimator
  * Inputs: past returns, volatility index, technical indicators, macro signals
- * Outputs: volatility from GARCH, volatility from RNN -- might change to different architecture
+ * Outputs: volatility from GARCH, volatility from RNN -- might change to different architecture, looking into other ways of approximating volatility
 * Fusion layer combines outputs into one volatility metric - linear regressor with weights for GARCH vs. RNN outputs based on recent market conditions
 * Residual correction module using MLP to predict error
 * Jump detection module
