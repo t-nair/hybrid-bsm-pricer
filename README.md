@@ -2,7 +2,7 @@
 Attempting to build an augmented Black-Scholes option pricer in C++ that:
  1. Learns and corrects for residual pricing errors using real market data.
  2. Replaces the constant volatility term with a fused, dynamic volatility estimate: using both GARCH and a RNN.
- 3. Identifies and compensates for sudden discontinuities in price dynamics with a jump detection module using a MLP.
+ 3. Identifies and compensates for sudden discontinuities in price dynamics with a jump detection module using a HMM.
 ## formula
 [hybrid-bsm-math.ipynb](https://github.com/t-nair/hybrid-bsm-pricer/blob/main/hybrid_bsm_math.ipynb)
 ## components
@@ -13,7 +13,7 @@ Attempting to build an augmented Black-Scholes option pricer in C++ that:
 * Fusion layer combines outputs into one volatility metric - linear regressor with weights for GARCH vs. RNN outputs based on recent market conditions
 * Residual correction module using MLP to predict error
 * Jump detection module
- * When jump detected: adds a small correction term to the price
+ * When jump detected: adds a small correction term to the price using a HMM
 # notes
 ## basic info
 * Stock: (a.k.a. equity) security that represents the ownership of a fraction of the issuing corporation
